@@ -2,6 +2,9 @@ import { FORM_ACTION, OTHER, PAGE_HISTORY } from '../survey.config';
 import { selectedValues, type Answers } from './answers';
 import { questions } from './steps';
 
+/** Build di anteprima: le risposte non vengono inviate. */
+export const IS_PREVIEW = import.meta.env.MODE === 'anteprima';
+
 /**
  * Corpo della richiesta per Google Moduli: un parametro `entry.N` per ogni risposta
  * (ripetuto per ogni casella scelta), il testo di "Altro" in `entry.N.other_option_response`
@@ -36,6 +39,11 @@ export function buildPayload(answers: Answers): URLSearchParams {
  * l'invio è riuscito se la richiesta non genera un errore di rete.
  */
 export async function submitAnswers(answers: Answers, fetchImpl: typeof fetch = fetch) {
+  // Anteprima da far provare (npm run build:anteprima): non manda nulla al Google Form.
+  if (IS_PREVIEW) {
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    return;
+  }
   await fetchImpl(FORM_ACTION, {
     method: 'POST',
     mode: 'no-cors',

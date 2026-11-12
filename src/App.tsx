@@ -18,7 +18,7 @@ import {
   markSubmitted,
   saveProgress,
 } from './lib/storage';
-import { submitAnswers } from './lib/submit';
+import { IS_PREVIEW, submitAnswers } from './lib/submit';
 import { Background } from './components/Background';
 import { EndScreen } from './components/EndScreen';
 import { IntroScreen } from './components/IntroScreen';
@@ -203,6 +203,14 @@ export function App() {
   return (
     <>
       <Background />
+      {IS_PREVIEW && (
+        <p
+          role="note"
+          className="fixed bottom-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] left-3 z-30 rounded-full border border-orange/40 bg-night/90 px-3 py-1.5 text-xs font-semibold text-orange backdrop-blur"
+        >
+          Anteprima di prova · le risposte non vengono inviate
+        </p>
+      )}
       <ProgressBar
         done={phase === 'survey' ? questionsBefore(step) : totalQuestions}
         total={totalQuestions}
