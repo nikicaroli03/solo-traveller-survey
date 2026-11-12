@@ -36,7 +36,7 @@ export function ShareButtons() {
           href={whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${buttonClass} border-[#25D366]/50 bg-[#25D366]/15 text-white hover:bg-[#25D366]/25`}
+          className={`${buttonClass} border-[#25D366]/50 bg-[#25D366]/15 text-cream hover:bg-[#25D366]/25`}
         >
           <WhatsAppIcon className="size-5 shrink-0 text-[#25D366]" />
           Condividi su WhatsApp
@@ -44,7 +44,7 @@ export function ShareButtons() {
         <button
           type="button"
           onClick={async () => setCopied(await copyText(SHARE_URL))}
-          className={`${buttonClass} border-white/15 text-white hover:border-white/35 hover:bg-white/5`}
+          className={`${buttonClass} border-white/15 text-cream hover:border-white/35 hover:bg-white/5`}
         >
           <LinkIcon className="size-5" />
           {copied ? 'Link copiato!' : 'Copia link'}

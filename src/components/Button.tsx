@@ -4,8 +4,8 @@ type Variant = 'primary' | 'ghost';
 
 const styles: Record<Variant, string> = {
   primary:
-    'bg-sea text-ink shadow-[0_8px_30px_-8px_rgb(93_224_230/0.6)] hover:-translate-y-0.5 hover:shadow-[0_12px_36px_-8px_rgb(93_224_230/0.8)] active:translate-y-0',
-  ghost: 'border border-white/15 text-white hover:border-white/35 hover:bg-white/5',
+    'bg-orange text-night shadow-[0_8px_30px_-8px_rgb(255_122_47/0.6)] hover:-translate-y-0.5 hover:shadow-[0_12px_36px_-8px_rgb(255_122_47/0.8)] active:translate-y-0',
+  ghost: 'border border-white/15 text-cream hover:border-white/35 hover:bg-white/5',
 };
 
 interface Props extends ComponentProps<'button'> {
@@ -26,7 +26,7 @@ export function Button({ variant = 'primary', className = '', type = 'button', .
 export function EnterHint({ label = 'Invio ↵' }: { label?: string }) {
   return (
     <span className="hidden text-sm text-mist sm:inline">
-      premi <kbd className="font-sans font-semibold text-white">{label}</kbd>
+      premi <kbd className="font-sans font-semibold text-cream">{label}</kbd>
     </span>
   );
 }

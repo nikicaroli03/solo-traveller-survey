@@ -215,7 +215,7 @@ export function App() {
           {resumed && (
             <p
               role="status"
-              className="mb-6 inline-block rounded-xl border border-sea/30 bg-sea/10 px-4 py-2 text-sm"
+              className="mb-6 inline-block rounded-xl border border-orange/30 bg-orange/10 px-4 py-2 text-sm"
             >
               Bentornatə! Abbiamo ripreso da dove eri rimastə.
             </p>

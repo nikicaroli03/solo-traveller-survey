@@ -19,7 +19,7 @@ export function SectionScreen({ number, title, onNext, onBack }: Props) {
 
   return (
     <div className="w-full">
-      <p className="text-sm font-semibold tracking-wide text-rose uppercase">Sezione {number}</p>
+      <p className="text-sm font-semibold tracking-wide text-orange uppercase">Sezione {number}</p>
       <h2 className="mt-3 text-4xl leading-tight font-extrabold text-balance sm:text-5xl">
         {title}
       </h2>

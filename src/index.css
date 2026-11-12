@@ -1,11 +1,15 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-ink: #0b0d12;
-  --color-ink-2: #141821;
-  --color-sea: #5de0e6;
-  --color-rose: #fe2c55;
-  --color-mist: #a9b2c0;
+  /* Colori del marchio Solo Travellers (brand/BRAND.md del progetto principale) */
+  --color-night: #0e1c30;
+  --color-night-2: #1a2d47;
+  --color-orange: #ff7a2f;
+  --color-cream: #fff8ef;
+  /* Testo secondario su Notte (contrasto 8,9 : 1) */
+  --color-mist: #b9c3d2;
+  /* Messaggi d'errore su Notte: distinto dall'arancio delle azioni */
+  --color-alert: #ff9d8a;
   --font-sans:
     'Plus Jakarta Sans Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
@@ -58,11 +62,11 @@
   0%,
   50%,
   100% {
-    background-color: rgb(93 224 230 / 0.22);
+    background-color: rgb(255 122 47 / 0.22);
   }
   25%,
   75% {
-    background-color: rgb(93 224 230 / 0.08);
+    background-color: rgb(255 122 47 / 0.08);
   }
 }
 
@@ -72,11 +76,11 @@
 
 /* Lo sfondo sta solo su html: se l'avesse anche body coprirebbe le sfumature (z-index negativo). */
 html {
-  background-color: var(--color-ink);
+  background-color: var(--color-night);
 }
 
 body {
-  color: #fff;
+  color: var(--color-cream);
   font-family: var(--font-sans);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -86,23 +90,27 @@ body {
 /* Nel layer base, così le utility (es. focus:outline-none sui titoli) possono sovrascriverlo */
 @layer base {
   :focus-visible {
-    outline: 3px solid var(--color-sea);
+    outline: 3px solid var(--color-orange);
     outline-offset: 3px;
   }
 }
 
-/* Texture a puntini discreta sullo sfondo */
-.dots {
-  background-image: radial-gradient(rgb(255 255 255 / 0.07) 1px, transparent 1px);
-  background-size: 22px 22px;
-  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 85%);
+/* Lo stesso fondo dell'animazione e del banner del sito: blu notte con trama di punti Panna */
+.brand-backdrop {
+  background-color: var(--color-night);
+  background-image:
+    radial-gradient(rgb(255 248 239 / 0.055) 1.4px, transparent 1.6px),
+    radial-gradient(ellipse 78% 78% at 50% 42%, #15263e, var(--color-night));
+  background-size:
+    32px 32px,
+    100% 100%;
 }
 
-/* Linea di percorso tratteggiata della barra di avanzamento */
+/* Linea di percorso tratteggiata della barra di avanzamento, come le rotte dell'animazione */
 .route {
   background-image: repeating-linear-gradient(
     90deg,
-    rgb(255 255 255 / 0.28) 0 6px,
+    rgb(255 248 239 / 0.3) 0 6px,
     transparent 6px 12px
   );
 }

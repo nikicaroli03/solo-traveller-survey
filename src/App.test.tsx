@@ -21,6 +21,23 @@ const waitAdvance = () => act(() => new Promise((r) => setTimeout(r, 500)));
 
 const question = (text: string | RegExp) => screen.findByRole('heading', { name: text });
 
+describe('intro animata', () => {
+  it('si può saltare e poi mostra logo e pulsante Inizia', async () => {
+    sessionStorage.clear();
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(await screen.findByRole('button', { name: "Salta l'animazione" }));
+    expect(
+      screen.getByRole('img', { name: 'Solo Travellers. Leave solo, Link together.' }),
+    ).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: "Salta l'animazione" })).not.toBeInTheDocument();
+    expect(sessionStorage.getItem('solo-survey:intro-vista')).toBe('1');
+    await user.click(screen.getByRole('button', { name: /Inizia/ }));
+    expect(await question(/Nome/)).toBeInTheDocument();
+  });
+});
+
 describe('survey', () => {
   it('blocca le domande obbligatorie con un messaggio', async () => {
     const user = userEvent.setup();

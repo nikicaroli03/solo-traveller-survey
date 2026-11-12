@@ -27,7 +27,7 @@ export function EndScreen({ justSubmitted }: Props) {
         aria-hidden
         className="pointer-events-none fixed inset-0 z-30 size-full"
       />
-      <div className="mb-8 flex size-16 animate-pop items-center justify-center rounded-full bg-sea text-ink shadow-[0_0_40px_rgb(93_224_230/0.5)]">
+      <div className="mb-8 flex size-16 animate-pop items-center justify-center rounded-full bg-orange text-night shadow-[0_0_40px_rgb(255_122_47/0.5)]">
         <CheckIcon className="size-8" />
       </div>
 
@@ -62,13 +62,13 @@ export function EndScreen({ justSubmitted }: Props) {
         href={MVP_URL}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-sea/40 bg-sea/10 px-5 py-4 transition duration-200 hover:-translate-y-0.5 hover:bg-sea/15"
+        className="mt-8 flex items-center justify-between gap-4 rounded-2xl border border-orange/40 bg-orange/10 px-5 py-4 transition duration-200 hover:-translate-y-0.5 hover:bg-orange/15"
       >
         <span>
           <span className="block font-bold">Prova la piattaforma</span>
-          <span className="block text-sm text-mist">Scopri il prototipo di Solo traveLLers</span>
+          <span className="block text-sm text-mist">Scopri il prototipo di Solo Travellers</span>
         </span>
-        <ArrowRightIcon className="size-5 shrink-0 text-sea" />
+        <ArrowRightIcon className="size-5 shrink-0 text-orange" />
       </a>
 
       <div className="mt-8">

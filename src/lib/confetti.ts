@@ -1,4 +1,4 @@
-const COLORS = ['#5DE0E6', '#FE2C55', '#FFFFFF', '#FFD166'];
+const COLORS = ['#FF7A2F', '#FFF8EF', '#FFB27F', '#4F7BB0'];
 
 interface Piece {
   x: number;
@@ -34,7 +34,7 @@ export function launchConfetti(canvas: HTMLCanvasElement, count = 140): () => vo
     size: Math.random() * 7 + 5,
     angle: Math.random() * Math.PI,
     spin: (Math.random() - 0.5) * 0.3,
-    color: COLORS[Math.floor(Math.random() * COLORS.length)] ?? '#5DE0E6',
+    color: COLORS[Math.floor(Math.random() * COLORS.length)] ?? '#FF7A2F',
   }));
 
   let frame = 0;

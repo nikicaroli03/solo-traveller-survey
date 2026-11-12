@@ -1,46 +1,72 @@
 import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
+import lockupUrl from '../assets/solo-travellers-tagline-dark.svg';
 import { intro } from '../survey.config';
+import { useLogoIntro } from '../lib/logo-intro';
 import { isTouchDevice } from '../lib/motion';
 import { totalQuestions } from '../lib/steps';
 import { Button, EnterHint } from './Button';
-import { ArrowRightIcon, PlaneIcon } from './Icons';
+import { ArrowRightIcon } from './Icons';
 
-/** "Solo traveLLers" con le due L evidenziate, come nel brand. */
-export function BrandTitle({ text }: { text: string }) {
-  const [before, after] = text.split('LL');
-  if (after === undefined) return <>{text}</>;
-  return (
-    <>
-      {before}
-      <span className="bg-gradient-to-r from-sea to-rose bg-clip-text text-transparent">LL</span>
-      {after}
-    </>
-  );
-}
-
+/**
+ * Schermata iniziale. Alla prima visita della sessione l'animazione del logo occupa tutto lo
+ * schermo; alla fine nome e slogan si riducono fino al logo in cima alla pagina e compaiono
+ * testo e pulsante.
+ */
 export function IntroScreen({ onStart }: { onStart: () => void }) {
+  const { phase, stageRef, logoRef, skip } = useLogoIntro();
+  const playing = phase === 'intro';
   const buttonRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
-    if (!isTouchDevice()) buttonRef.current?.focus({ preventScroll: true });
-  }, []);
+    if (!playing && !isTouchDevice()) buttonRef.current?.focus({ preventScroll: true });
+  }, [playing]);
 
   return (
     <div className="w-full">
-      <div className="mb-8 flex size-14 items-center justify-center rounded-2xl border border-sea/30 bg-sea/10">
-        <PlaneIcon className="size-7 text-sea" />
+      {/* Nel body: dentro la schermata (che ha un'animazione di transform) "fixed" non
+          coprirebbe tutto lo schermo */}
+      {playing &&
+        createPortal(
+          <div className="brand-backdrop fixed inset-0 z-40">
+            <div ref={stageRef} className="absolute inset-0" />
+            <button
+              type="button"
+              onClick={skip}
+              className="absolute right-4 bottom-[calc(env(safe-area-inset-bottom,0px)+1rem)] z-10 rounded-full border border-cream/25 bg-cream/10 px-4 py-2 text-sm font-medium text-cream/90 backdrop-blur transition-colors hover:bg-cream/20"
+            >
+              Salta l'animazione
+            </button>
+          </div>,
+          document.body,
+        )}
+
+      {/* Durante l'animazione il contenuto occupa già il suo posto ma resta invisibile e inattivo */}
+      <div inert={playing}>
+        <h1 className={playing ? 'opacity-0' : undefined}>
+          <img
+            ref={logoRef}
+            src={lockupUrl}
+            alt="Solo Travellers. Leave solo, Link together."
+            className="w-[min(78vw,420px)]"
+          />
+        </h1>
+        <div
+          className={`transition-all duration-700 ${playing ? 'translate-y-3 opacity-0' : 'translate-y-0 opacity-100 delay-700'}`}
+        >
+          <p className="mt-10 inline-flex items-center gap-2 rounded-full bg-cream/10 px-3 py-1 text-sm font-semibold text-orange">
+            Questionario · {totalQuestions} domande · circa 5 minuti
+          </p>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-mist sm:text-xl">{intro.text}</p>
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Button ref={buttonRef} onClick={onStart} className="px-8 text-lg">
+              Inizia
+              <ArrowRightIcon className="size-5" />
+            </Button>
+            <EnterHint />
+          </div>
+        </div>
       </div>
-      <h1 className="text-5xl font-extrabold tracking-tight sm:text-7xl">
-        <BrandTitle text={intro.title} />
-      </h1>
-      <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist sm:text-xl">{intro.text}</p>
-      <div className="mt-10 flex flex-wrap items-center gap-4">
-        <Button ref={buttonRef} onClick={onStart} className="px-8 text-lg">
-          Inizia
-          <ArrowRightIcon className="size-5" />
-        </Button>
-        <EnterHint />
-      </div>
-      <p className="mt-6 text-sm text-mist">⏱ circa 5 minuti · {totalQuestions} domande</p>
     </div>
   );
 }

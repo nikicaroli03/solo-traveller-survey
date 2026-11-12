@@ -26,7 +26,7 @@ export function OptionCard({ option, letter, multi, selected, confirming, onSele
       onClick={onSelect}
       className={`group flex w-full items-center gap-4 rounded-2xl border px-4 py-3.5 text-left transition duration-200 sm:px-5 ${
         selected
-          ? 'border-sea bg-sea/15 shadow-[0_0_0_1px_var(--color-sea)]'
+          ? 'border-orange bg-orange/15 shadow-[0_0_0_1px_var(--color-orange)]'
           : 'border-white/12 bg-white/[0.04] hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.07]'
       } ${confirming ? 'animate-blink' : ''}`}
     >
@@ -34,8 +34,8 @@ export function OptionCard({ option, letter, multi, selected, confirming, onSele
         aria-hidden
         className={`flex size-8 shrink-0 items-center justify-center rounded-lg border text-sm font-bold transition ${
           selected
-            ? 'border-sea bg-sea text-ink'
-            : 'border-white/20 text-mist group-hover:text-white'
+            ? 'border-orange bg-orange text-night'
+            : 'border-white/20 text-mist group-hover:text-cream'
         }`}
       >
         {selected && multi ? <CheckIcon className="size-4 animate-pop" /> : letter}
@@ -44,7 +44,7 @@ export function OptionCard({ option, letter, multi, selected, confirming, onSele
       {Icon && (
         <span
           aria-hidden
-          className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-rose/15 text-rose"
+          className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-orange/15 text-orange"
         >
           <Icon className="size-5" />
         </span>
@@ -60,7 +60,7 @@ export function OptionCard({ option, letter, multi, selected, confirming, onSele
       </span>
 
       {selected && !multi && (
-        <CheckIcon aria-hidden className="size-5 shrink-0 animate-pop text-sea" />
+        <CheckIcon aria-hidden className="size-5 shrink-0 animate-pop text-orange" />
       )}
     </button>
   );

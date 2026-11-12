@@ -11,7 +11,7 @@ export const MVP_URL = 'https://d15hbasockij31.cloudfront.net';
 /** Link pubblico della survey, usato dai pulsanti di condivisione. */
 export const SHARE_URL = 'https://nikicaroli03.github.io/solo-traveller-survey/';
 export const SHARE_TEXT =
-  'Ci aiuti con 5 minuti? Compila il questionario di Solo traveLLers, la piattaforma per chi viaggia da solo:';
+  'Ci aiuti con 5 minuti? Compila il questionario di Solo Travellers, la piattaforma per chi viaggia da solo:';
 
 /** Valore che Google si aspetta per l'opzione "Altro" con testo libero. */
 export const OTHER = '__other_option__';
@@ -47,7 +47,7 @@ export interface Section {
 }
 
 export const intro = {
-  title: 'Solo traveLLers',
+  // Il titolo della schermata iniziale è il logo animato (src/assets, src/brand).
   text:
     "Questionario per un progetto di Ingegneria Gestionale dell'Università di Bologna. " +
     'Ci aiuta a capire come migliorare una piattaforma che permette a chi viaggia da solo di ' +

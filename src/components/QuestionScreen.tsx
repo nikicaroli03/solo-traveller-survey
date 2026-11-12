@@ -25,7 +25,7 @@ interface Props {
 }
 
 const inputClass =
-  'w-full rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-4 text-lg text-white placeholder:text-mist/60 transition focus:border-sea focus:bg-white/[0.07] focus:outline-none';
+  'w-full rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-4 text-lg text-cream placeholder:text-mist/60 transition focus:border-orange focus:bg-white/[0.07] focus:outline-none';
 
 export function QuestionScreen(props: Props) {
   const { question, number, sectionTitle, answers, error, errorKey, isLast, sending } = props;
@@ -58,7 +58,9 @@ export function QuestionScreen(props: Props) {
 
   return (
     <div className="w-full">
-      <p className="mb-3 text-sm font-semibold tracking-wide text-sea uppercase">{sectionTitle}</p>
+      <p className="mb-3 text-sm font-semibold tracking-wide text-orange uppercase">
+        {sectionTitle}
+      </p>
       <h2
         id={titleId}
         ref={titleRef}
@@ -67,7 +69,7 @@ export function QuestionScreen(props: Props) {
       >
         <span
           aria-hidden
-          className="mt-1.5 flex shrink-0 items-center gap-1 self-start text-base text-rose sm:mt-2.5"
+          className="mt-1.5 flex shrink-0 items-center gap-1 self-start text-base text-orange sm:mt-2.5"
         >
           {number}
           <ArrowRightIcon className="size-4" />
@@ -76,7 +78,7 @@ export function QuestionScreen(props: Props) {
           {question.title}
           {question.required ? (
             <>
-              <span aria-hidden className="text-rose">
+              <span aria-hidden className="text-orange">
                 {' '}
                 *
               </span>
@@ -169,7 +171,7 @@ export function QuestionScreen(props: Props) {
           <p
             key={errorKey}
             id={errorId}
-            className="mt-4 inline-flex animate-shake items-center gap-2 rounded-xl bg-rose/15 px-4 py-2 text-sm font-medium text-[#ff8aa0]"
+            className="mt-4 inline-flex animate-shake items-center gap-2 rounded-xl bg-alert/10 px-4 py-2 text-sm font-medium text-alert"
           >
             <span aria-hidden>⚠</span> {error}
           </p>
@@ -179,7 +181,7 @@ export function QuestionScreen(props: Props) {
       {props.sendError && (
         <p
           role="alert"
-          className="mt-4 rounded-2xl border border-rose/40 bg-rose/10 px-5 py-4 text-sm leading-relaxed"
+          className="mt-4 rounded-2xl border border-alert/40 bg-alert/10 px-5 py-4 text-sm leading-relaxed"
         >
           Non siamo riusciti a inviare le risposte. Controlla la connessione e riprova: le tue
           risposte sono salvate su questo dispositivo.
