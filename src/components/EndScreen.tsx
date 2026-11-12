@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react';
 import { MVP_URL, outro } from '../survey.config';
 import { launchConfetti } from '../lib/confetti';
 import { prefersReducedMotion } from '../lib/motion';
-import { ArrowRightIcon, CheckIcon } from './Icons';
+import { ArrowRightIcon } from './Icons';
 import { ShareButtons } from './ShareButtons';
+import { CelebratingPair } from './Traveller';
 
 interface Props {
   /** true: la survey è appena stata inviata (con coriandoli); false: era già stata inviata. */
@@ -27,8 +28,16 @@ export function EndScreen({ justSubmitted }: Props) {
         aria-hidden
         className="pointer-events-none fixed inset-0 z-30 size-full"
       />
-      <div className="mb-8 flex size-16 animate-pop items-center justify-center rounded-full bg-orange text-night shadow-[0_0_40px_rgb(255_122_47/0.5)]">
-        <CheckIcon className="size-8" />
+      <div className="relative mb-8 inline-block">
+        {justSubmitted && (
+          <span
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 mx-auto size-24 animate-link-pulse rounded-full bg-orange/30"
+          />
+        )}
+        <CelebratingPair
+          className={`relative h-24 text-orange ${justSubmitted ? '' : 'animate-pop'}`}
+        />
       </div>
 
       {justSubmitted ? (

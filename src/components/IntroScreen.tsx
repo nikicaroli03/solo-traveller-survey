@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import lockupUrl from '../assets/solo-travellers-tagline-dark.svg';
+// Logo ufficiale senza slogan: ha la stessa larghezza e la stessa origine della versione con
+// slogan con cui finisce l'animazione, quindi la riduzione finale combacia (lo slogan sparisce).
+import logoUrl from '../assets/solo-travellers-dark.svg';
 import { intro } from '../survey.config';
 import { useLogoIntro } from '../lib/logo-intro';
 import { isTouchDevice } from '../lib/motion';
@@ -44,12 +46,7 @@ export function IntroScreen({ onStart }: { onStart: () => void }) {
       {/* Durante l'animazione il contenuto occupa già il suo posto ma resta invisibile e inattivo */}
       <div inert={playing}>
         <h1 className={playing ? 'opacity-0' : undefined}>
-          <img
-            ref={logoRef}
-            src={lockupUrl}
-            alt="Solo Travellers. Leave solo, Link together."
-            className="w-[min(78vw,420px)]"
-          />
+          <img ref={logoRef} src={logoUrl} alt="Solo Travellers" className="w-[min(78vw,420px)]" />
         </h1>
         <div
           className={`transition-all duration-700 ${playing ? 'translate-y-3 opacity-0' : 'translate-y-0 opacity-100 delay-700'}`}

@@ -73,6 +73,7 @@ export function App() {
       await submitAnswers(answers);
       markSubmitted();
       clearProgress();
+      setResumed(false);
       setPhase('done');
       window.scrollTo({ top: 0 });
     } catch {

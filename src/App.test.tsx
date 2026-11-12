@@ -28,9 +28,7 @@ describe('intro animata', () => {
     render(<App />);
 
     await user.click(await screen.findByRole('button', { name: "Salta l'animazione" }));
-    expect(
-      screen.getByRole('img', { name: 'Solo Travellers. Leave solo, Link together.' }),
-    ).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'Solo Travellers' })).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: "Salta l'animazione" })).not.toBeInTheDocument();
     expect(sessionStorage.getItem('solo-survey:intro-vista')).toBe('1');
     await user.click(screen.getByRole('button', { name: /Inizia/ }));

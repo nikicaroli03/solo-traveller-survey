@@ -19,6 +19,53 @@
   --animate-pop: pop 0.4s ease both;
   --animate-fade: fade 0.6s ease both;
   --animate-blink: blink 0.45s ease both;
+  /* L-persone: passi, impulso del Link, salti di gioia, rotte che scorrono */
+  --animate-walk: walk 0.7s ease-in-out both;
+  --animate-link-pulse: link-pulse 1.4s ease-out 2 both;
+  --animate-hop: hop 0.9s cubic-bezier(0.3, 0, 0.3, 1) infinite;
+  --animate-march: march 3s linear infinite;
+}
+
+/* Tre passi: la figura sobbalza e oscilla leggermente in avanti */
+@keyframes walk {
+  0%,
+  100% {
+    transform: none;
+  }
+  16%,
+  50%,
+  84% {
+    transform: translateY(-3px) rotate(4deg);
+  }
+  33%,
+  67% {
+    transform: translateY(0) rotate(-2deg);
+  }
+}
+@keyframes link-pulse {
+  from {
+    transform: scale(0.4);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+@keyframes hop {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-18%);
+  }
+}
+@keyframes march {
+  to {
+    stroke-dashoffset: -32;
+  }
 }
 
 @keyframes step-up {
